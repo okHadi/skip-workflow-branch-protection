@@ -2,13 +2,11 @@ name: Ignore path
 
 on:
   push:
-    branches:
-      - main
-    paths-ignore:
-      - "README.md"
+  pull_request:
 
 jobs:
   build:
+    if: github.event_name == 'push'
     name: Build
     runs-on: ubuntu-latest
     steps:
