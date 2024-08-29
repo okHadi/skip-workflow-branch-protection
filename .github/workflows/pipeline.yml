@@ -1,13 +1,19 @@
 name: Ignore path
 
 on:
-  push:
   pull_request:
+  push:
 
 jobs:
-  build:
-    if: github.event_name == 'push'
+  build1:
+    if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'hotfix')
     name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello, World!"
+  build2:
+    if: github.event_name == 'pull_request'
+    name: Build2
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello, World!"
